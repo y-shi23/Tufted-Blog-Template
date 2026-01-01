@@ -15,28 +15,26 @@
 - 📦 内置基于 Python 的跨平台构建脚本，支持增量编译
 - 📝 支持生成 HTML 网页和 PDF 文档，支持链接到 PDF
 - 🌐 内置 GitHub Actions 工作流，一键部署网站
-- 📄 丰富的示例和文档，无需任何前置知识，简单学习 Typst 后即可开始编写
+- 📄 丰富的示例和文档，无需任何前置知识，[简单学习 Typst](https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki/Typst-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E8%B5%84%E6%96%99) 后即可开始编写
 
 ## 📦 环境准备（仅需一次）
 
-本项目只依赖 Typst 和 Python 环境（推荐使用 uv 工具）。Typst 用于将 `.typ` 文件编译为 HTML 和 PDF，Python 脚本用于自动化构建流程。
+本项目只依赖 Typst 和 Python（推荐使用 uv 配置 Python），Typst 用于编译网页，Python 脚本用于自动化构建流程。
 
 ### 0. 事前准备
 
 为了进行版本管理、自动构建和拥有更好的编写体验，建议你自行准备这些项目：
 
 - 了解什么是终端，能够在终端中运行命令（可参考 [Wiki 页](https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki/%E7%BB%88%E7%AB%AF%E4%B8%8E%E5%B7%A5%E4%BD%9C%E8%B7%AF%E5%BE%84)）
-- 拥有一个 GitHub 账号，从而使用 GitHub Action 和 GitHub Pages 进行免费网站构建和部署，你将拥有一个免费的 `<your-github-username>.github.io` 域名作为你的网站地址
-- 安装 Git 进行版本管理，以及将项目推送到 GitHub 仓库以运行自动构建和部署
-- 使用 [VS Code](https://code.visualstudio.com/) 或其他你喜欢的代码编辑器，并安装 [Tinymist](https://github.com/Myriad-Dreamin/tinymist) 插件以获得 Typst 语言支持
+- 拥有一个 GitHub 账号，从而使用 GitHub Actions 和 GitHub Pages 进行网站构建和部署
+- 安装 Git 进行版本管理和远程推送
+- 使用 [VS Code](https://code.visualstudio.com/) 或其他你喜欢的代码编辑器，并安装 [Tinymist](https://github.com/Myriad-Dreamin/tinymist) 插件以获得 Typst 语言支持（可参考 [Wiki 页](https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki/Typst-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E8%B5%84%E6%96%99)）
 
 ### 1. 安装 Typst
 
 > 如果你的系统已经安装 Typst CLI，可以跳过这一步。
 
-Typst 是一种用于排版文档的标记语言，Typst 编译器读取带有标记的 `.typ` 文本文件，将这些文本文件编译为 PDF/HTML 文档。本项目基于 Typst 实验性的 HTML 导出功能构建网页。
-
-我们要下载的便是 Typst 编译器。
+[Typst](https://typst.app/) 是一个新兴的、现代化的标记语言排版系统，旨在成为 LaTeX 的现代化替代品，同时比 LaTeX 更简单易学、编译更快、使用更友好。本项目利用 Typst 实验性的 HTML 导出功能将 `.typ` 纯文本源文件编译为网页。
 
 - **方法 1：从 [Typst 下载页面](https://typst.app/open-source/#download)直接下载可执行程序。** 你需要下载压缩包，并将其解压到一个位于 `PATH` 环境变量中的文件夹中。
     - Windows 用户 (**推荐**) 可将其解压你喜欢的路径，然后将该路径添加到 `PATH` 环境变量中，具体操作可见 [Wiki 页](https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki/PATH-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F)。
@@ -163,13 +161,15 @@ uv run build.py preview -p 12345
 
 </details>
 
-现在你可以打开浏览器，访问 `http://localhost:8000` 来查看默认网页。我在默认网页（即`content/` 中的内容）中编写了更多文档说明和示例内容，，你可以自行探索和修改。推荐在启动本地预览后，一边阅读网页文档，一边对照生成该页面的 `.typ` 源代码，从而更好地了解 `content/` 结构、Typst 内容以及如何编写你自己的网站。
+现在你可以打开浏览器，访问 `http://localhost:8000` 来查看默认网页。我在默认网页（即`content/` 中的内容）中编写了更多文档说明和示例内容，你可以自行探索和修改。
+
+你可以参考 [Wiki 页](https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki/Typst-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E8%B5%84%E6%96%99) 的内容和资料了解和学习 Typst。
 
 ### 4. 使用 Typst 编写网页与部署网站
 
 在了解网页结构和如何编写后，你就可以将 `content/` 中的内容替换为你自己的内容，从而搭建你自己的网站。
 
-1.  **修改配置**：编辑 `config.typ` 设置网站标题和导航栏，还可以在 `assets/` 下放置一个 `favicon.ico` 作为你网站的标签页图标。
+1.  **修改配置**：编辑 `config.typ` 设置网站标题和导航栏，还可以在 `assets/` 下放置一个 `favicon.ico` 文件作为你网站的标签页图标。
 2.  **添加文章**：在 `content/` 下创建新的 `.typ` 文件，可以参考目前的 `content/` 获得示例。
 3.  **生成 PDF**：如果文件名中包含 `PDF` (如 `CV-PDF.typ`)，构建脚本会自动将其编译为 PDF 文件，此时你可以在网页中添加链接指向该 PDF。
 4.  **部署网站**：在你的 GitHub 仓库中配置好 Pages，将修改后的内容推送到 GitHub，GitHub Actions 会自动构建、部署、更新网站。具体内容可参考 [Wiki 页](https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki/GitHub-Pages-%E9%83%A8%E7%BD%B2%E7%BD%91%E7%AB%99)。
@@ -193,12 +193,12 @@ Tufted-Blog-Template/
 └── Makefile              # Make 构建命令
 ```
 
-## TODO 列表
+## 📋 待办事项
 
-- 优化公式前后的间距
-- 参考文献直接显示在侧边栏
-- 网页的交叉引用跳转
-- 添加中英文页面切换功能
+- [ ] 优化公式前后的间距
+- [ ] 添加网页的交叉引用跳转
+- [ ] 参考文献直接显示在侧边栏
+- [ ] 添加中英文页面切换功能
 
 ## 🔗 说明
 
