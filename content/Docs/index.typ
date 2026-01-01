@@ -1,7 +1,7 @@
 #import "../index.typ": template, tufted
 #show: template
 
-= Docs
+= 文档 / Docs
 
 == Basic
 
