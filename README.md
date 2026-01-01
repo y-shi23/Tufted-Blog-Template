@@ -12,13 +12,20 @@
 - 📝 支持生成 HTML 网页和 PDF 文档，支持链接到 PDF
 - 🌐 内置 GitHub Pages 部署支持，一键发布网站
 
-## 📦 依赖安装（仅需一次）
+## 📦 环境准备（仅需一次）
 
-> 如果你是纯小白用户，这部分可能会涉及到很多你从未接触到的新概念，放心，都不难理解。  
-> 甚至可能会第一次接触到终端和命令行，不要害怕，它们只是和计算机交流的一种方式。  
-> 遇到不懂的概念或不会的操作，多问 AI 多搜索。
+> 如果你是纯小白用户，这部分可能会涉及到一些你从未接触到的新概念，甚至可能会第一次接触到终端和命令行，不要害怕，本项目提供了详细的文档帮助你上手。  
+> 遇到不懂的概念或不会的操作，多问 AI 多搜索。如果遇到问题，欢迎在 [Issue](https://github.com/Yousa-Mirage/Tufted-Blog-Template/issues) 中提问和反馈。
 
 本项目只依赖 Typst 和 Python 环境（推荐使用 uv 工具）。Typst 用于将 `.typ` 文件编译为 HTML 和 PDF，Python 脚本用于自动化构建流程。
+
+### 0. 事前准备
+
+为了进行版本管理、自动构建和拥有更好的编写体验，建议你自行设置这些项目：
+
+- 拥有一个 GitHub 账号，从而使用 GitHub Action 和 GitHub Pages 进行免费网站构建和部署，你将拥有一个免费的 `<your-github-username>.github.io` 域名作为你的网站地址
+- 安装 Git 进行版本管理，以及将项目推送到 GitHub 仓库以运行自动构建和部署
+- 使用 [VS Code](https://code.visualstudio.com/) 或其他你喜欢的代码编辑器，并安装 [Tinymist](https://github.com/Myriad-Dreamin/tinymist) 插件以获得 Typst 语言支持
 
 ### 1. 安装 Typst
 
@@ -38,9 +45,9 @@ Typst 是一种用于排版文档的标记语言，Typst 编译器读取并解�
 
 完成后打开终端，输入并运行 `typst --version`，如果显示版本号则表示安装成功。
 
-### 2. 安装 uv
+### 2. 安装 Python
 
-> 如果你的系统已经安装 Python，也可以跳过这一步不安装 uv。
+> 如果你的系统已经安装 Python >= 3.6，也可以跳过这一步。
 
 本项目使用一个 Python 脚本 `build.py` 来自动化构建流程。理论上只需要安装有 Python 就可以运行，不过为了最大程度简化环境依赖问题，推荐使用 [**uv**](https://docs.astral.sh/uv/) 来运行脚本。uv 是一个速度极快的 Python 包和项目管理器，可以简化 Python 安装、环境依赖管理和脚本运行。
 
@@ -56,15 +63,7 @@ Typst 是一种用于排版文档的标记语言，Typst 编译器读取并解�
     ```
 - 或使用[官方文档](https://docs.astral.sh/uv/getting-started/installation)提到的其他方法。
 
-安装完成后，你可以在终端中运行 `uv --version` 来验证安装是否成功。一旦 uv 安装成功，你不再需要手动安装 Python、操心版本和环境问题，uv 会搞定一切。
-
-### 额外项目
-
-为了进行版本管理、自动构建和拥有更好的编写体验，建议你自行设置这些项目：
-
-- 拥有一个 GitHub 账号，从而使用 GitHub Pages 进行免费网站部署
-- 安装 Git 进行版本管理，以及将项目推送到 GitHub 仓库以运行自动构建和部署
-- 使用 [VS Code](https://code.visualstudio.com/) 或其他你喜欢的代码编辑器，并安装 [Tinymist](https://github.com/Myriad-Dreamin/tinymist) 插件以获得 Typst 语言支持
+安装完成后，你可以在终端中运行 `uv --version` 来验证安装是否成功。一旦 uv 安装成功，你不再需要手动安装 Python、操心环境问题，uv 会搞定一切。
 
 ## 🚀 快速开始
 
@@ -87,7 +86,7 @@ git clone https://github.com/Yousa-Mirage/Yousa-Mirage.github.io.git
 
 ### 2. 构建网站
 
-进入你的网站项目目录，在终端中运行以下命令：
+进入你的网站项目目录，**在当前路径下打开终端**并运行以下命令：
 
 ```bash
 uv run build.py build
@@ -99,17 +98,20 @@ uv run build.py build
 python build.py build
 ```
 
-如果你安装了 `make`，也可以运行以下命令（只在 macOS/Linux 上工作）：
+如果你使用 macOS/Linux 并且安装了 `make`，也可以运行以下命令：
 
 ```bash
+# 只适用于 macOS/Linux
 make build
 ```
 
-此命令会将 `content/` 下的 `.typ` 文件对应编译为 HTML 文件，并输出到 `_site/` 目录。`_site/` 目录就是你的网站在本地的样子。在你完成修改后，每次运行该命令即可重新构建网站。
+此命令会将 `content/` 下的 `.typ` 文件对应编译为 HTML 文件，并输出到 `_site/` 目录。`_site/` 目录就是你的网站在本地的样子。在你修改文件后，重新运行该命令即可增量编译。
 
 ### 3. 本地预览
 
-如果你安装了 uv，你可以运行以下命令启动本地预览服务器（这个命令使用 uv 运行了一个叫做 livereload 的工具，livereload 将 `_site/` 目录作为网站根目录，并在本地的 8000 端口启动 HTTP 实时服务器）：
+如果你安装了 uv，你可以在终端中运行以下命令启动本地预览服务器（这个命令使用 uv 运行了一个叫做 livereload 的工具，livereload 将 `_site/` 目录作为网站根目录，并在本地的 8000 端口启动 HTTP 实时服务器）：
+
+> HTTP 服务器会占用当前终端窗口，因此推荐在该路径下打开一个新的终端窗口运行预览命令。
 
 ```bash
 uvx livereload _site -p 8000
@@ -126,8 +128,8 @@ python -m http.server 8000 --directory _site
 ### 4. 使用 Typst 编写网页与部署网站
 
 1.  **修改配置**：编辑 `config.typ` 设置网站标题和导航栏。
-2.  **添加文章**：在 `content/**/` 下创建新的 `.typ` 文件。
-3.  **生成 PDF**：如果文件名包含 `PDF` (如 `CV-PDF.typ`)，构建脚本会自动将其编译为 PDF 文件，此时你可以在网页中添加链接指向该 PDF。
+2.  **添加文章**：在 `content/**/` 下创建新的 `.typ` 文件，可以参考目前的 `content/` 获得示例。
+3.  **生成 PDF**：如果文件名包含 `PDF/pdf` (如 `CV-PDF.typ`)，构建脚本会自动将其编译为 PDF 文件，此时你可以在网页中添加链接指向该 PDF。
 4.  **部署网站**：在你的 GitHub 仓库中配置好 Pages，将修改后的内容推送到 GitHub，GitHub Actions 会自动构建、部署、更新网站。
 
 默认 `content/` 中包含进一步的文档说明和示例页面，你可以自行探索和修改。推荐在启动本地预览后，一边阅读网页一边对照生成该网页的 `.typ` 源代码，从而更好地了解 Typst 文本内容和如何编写你自己的网站。

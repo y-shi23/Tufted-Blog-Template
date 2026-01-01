@@ -12,19 +12,25 @@ Tufted Blog Template 构建脚本
 支持增量编译：只重新编译修改后的文件，加快构建速度。
 
 用法:
-    uv run build.py build     # 完整构建 (HTML + PDF + 资源)
-    uv run build.py html      # 仅构建 HTML 文件
-    uv run build.py pdf       # 仅构建 PDF 文件
-    uv run build.py assets    # 仅复制静态资源
-    uv run build.py clean     # 清理生成的文件
-    uv run build.py --help    # 显示帮助信息
+    uv run build.py build       # 完整构建 (HTML + PDF + 资源)
+    uv run build.py html        # 仅构建 HTML 文件
+    uv run build.py pdf         # 仅构建 PDF 文件
+    uv run build.py assets      # 仅复制静态资源
+    uv run build.py clean       # 清理生成的文件
+    uv run build.py preview     # 启动本地预览服务器（默认端口 8000）
+    uv run build.py preview -p 3000  # 使用自定义端口
+    uv run build.py --help      # 显示帮助信息
 
 增量编译选项:
-    --force, -f               # 强制完整重建，忽略增量检查
+    --force, -f                 # 强制完整重建，忽略增量检查
+
+预览服务器选项:
+    --port, -p PORT             # 指定服务器端口号（默认: 8000）
 
 也可以直接使用 Python 运行:
     python build.py build
     python build.py build --force
+    python build.py preview -p 3000
 """
 
 import argparse
@@ -583,6 +589,54 @@ def clean() -> bool:
         return False
 
 
+def preview(port: int = 8000) -> bool:
+    """
+    启动本地预览服务器。
+
+    首先尝试使用 uvx livereload（支持实时刷新），
+    如果失败则回退到 Python 内置的 http.server。
+
+    参数:
+        port: 服务器端口号，默认为 8000
+    """
+    if not SITE_DIR.exists():
+        print(f"  ⚠ 输出目录 {SITE_DIR} 不存在，请先运行 build 命令。")
+        return False
+
+    print("正在启动本地预览服务器...")
+    print(f"  🌐 访问地址: http://localhost:{port}")
+    print("  按 Ctrl+C 停止服务器")
+    print()
+
+    # 首先尝试 uvx livereload
+    try:
+        result = subprocess.run(
+            ["uvx", "livereload", str(SITE_DIR), "-p", str(port)],
+            check=False,
+        )
+        return result.returncode == 0
+    except FileNotFoundError:
+        print("  未找到 uv，尝试 Python http.server...")
+    except KeyboardInterrupt:
+        print("\n服务器已停止。")
+        return True
+
+    # 回退到 Python http.server
+    try:
+        print("使用 Python 内置 http.server...")
+        result = subprocess.run(
+            [sys.executable, "-m", "http.server", str(port), "--directory", str(SITE_DIR)],
+            check=False,
+        )
+        return result.returncode == 0
+    except KeyboardInterrupt:
+        print("\n服务器已停止。")
+        return True
+    except Exception as e:
+        print(f"  ❌ 启动服务器失败: {e}")
+        return False
+
+
 def build(force: bool = False):
     """
     完整构建：HTML + PDF + 资源。
@@ -635,13 +689,13 @@ def create_parser():
         description="Tufted Blog Template 构建脚本 - 将 content 中的 Typst 文件编译为 HTML 和 PDF",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-默认情况下，构建脚本只重新编译修改过的文件。
-可以使用 -f/--force 选项强制完整重建：
+构建脚本默认只重新编译修改过的文件，可使用 -f/--force 选项强制完整重建：
     uv run build.py build --force
+    或 python build.py build -f
 
-构建后可以启动本地预览服务：
-    uvx livereload _site -p 8000
-    或 python -m http.server 8000 --directory _site
+使用 preview 命令启动本地预览服务器：
+    uv run build.py preview
+    或 python build.py preview -p 3000  # 使用自定义端口
 
 更多信息请参阅 README.md
 """,
@@ -662,6 +716,11 @@ def create_parser():
 
     subparsers.add_parser("assets", help="仅复制静态资源")
     subparsers.add_parser("clean", help="清理生成的文件")
+
+    preview_parser = subparsers.add_parser("preview", help="启动本地预览服务器")
+    preview_parser.add_argument(
+        "-p", "--port", type=int, default=8000, help="服务器端口号（默认: 8000）"
+    )
 
     return parser
 
@@ -688,6 +747,7 @@ if __name__ == "__main__":
         "pdf": lambda: (SITE_DIR.mkdir(parents=True, exist_ok=True), build_pdf(force))[1],
         "assets": lambda: (SITE_DIR.mkdir(parents=True, exist_ok=True), copy_assets())[1],
         "clean": clean,
+        "preview": lambda: preview(getattr(args, "port", 8000)),
     }
 
     success = commands[args.command]()
