@@ -197,7 +197,7 @@ Tufted-Blog-Template/
 - [x] Optimize dark mode effects
 - [ ] Add light/dark mode toggle
 - [ ] Optimize code block width on mobile
-- [ ] Add English README and documentation
+- [x] Add English README and documentation
 - [ ] Optimize spacing before and after formulas
 - [ ] Add cross-reference navigation for web pages
 - [ ] (Display references directly in the sidebar)
