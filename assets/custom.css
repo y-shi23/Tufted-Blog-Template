@@ -222,3 +222,64 @@ sup.footnote-ref {
   color: #008000;
   border-color: #008000;
 }
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+  /* 标题颜色 */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+
+  /* 行内代码样式 */
+  code {
+    background-color: #2d2d2d;
+    color: #e8e8e8;
+    border-color: #3d3d3d;
+  }
+
+  /* 代码块容器样式 */
+  pre {
+    background-color: #2d2d2d;
+    border-color: #3d3d3d;
+  }
+
+  /* 代码块中的代码文本 */
+  pre > code {
+    color: #e8e8e8;
+  }
+
+  /* 行号边框和颜色 */
+  .line-numbers-rows {
+    border-right-color: #555;
+    color: #666;
+  }
+
+  /* 复制按钮 */
+  .copy-button {
+    background-color: #333;
+    color: #ccc;
+    border-color: #555;
+  }
+
+  .copy-button:hover {
+    background-color: #444;
+    color: #eee;
+  }
+
+  .copy-button.copied {
+    background-color: #1a4d3a;
+    color: #5fda9d;
+    border-color: #5fda9d;
+  }
+
+  /* 引用块样式 */
+  div[style*="border-inline-start"] .footnote-ref,
+  div[style*="border-inline-start"] .marginnote,
+  div[style*="border-inline-start"] .footnote-ref a {
+    color: #eee !important;
+  }
+}
