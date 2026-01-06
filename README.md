@@ -4,7 +4,7 @@
 
 这是一个基于 [Typst](https://typst.app/) 和 [Tufted](https://github.com/vsheg/tufted) 的静态网站构建模板，手把手教你搭建简洁、美观的个人网站、博客和简历设计。
 
-如果你想快速体验网站样式效果，可以访问 [tufted.vsheg.com](https://tufted.vsheg.com/) 或 [示例网站](https://little-yousa-mirage.github.io/)。
+如果你想快速体验网站样式效果，可以访问 [示例网站](https://tufted-blog.pages.dev/) 。
 
 ![Tufted website](content/imgs/devices.webp)
 
