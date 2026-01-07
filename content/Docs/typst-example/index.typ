@@ -16,7 +16,7 @@
   如果你之前从未接触过 Typst 和标记语言，建议先阅读 #link("https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki/Typst-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E8%B5%84%E6%96%99")[Wiki 页面] 及其中的资料，进行了解和学习后再来阅读本文档。
 ]
 
-== 1. 字体与文本修饰
+== 1. 字体与文本修饰 <ch1>
 
 这里展示了 *粗体*、_斜体_、#underline[下划线]、#strike[删除线]、#overline[上划线]、上标 E=mc#super[2]、下标 H#sub[2]O。重要内容可以使用 #highlight[高亮标记]。
 
@@ -152,7 +152,6 @@
 ]
 ```
 
-// TODO:
 你可以将参考文献导出为 `.bib` 文件，使用 `bibliography()` 函数将其引用到 Typst中，然后就可以使用 `@` 引用它，就像这样@tufte1973relationship。\
 默认会将使用的参考文献显示在调用 `bibliography()` 函数的位置。模板暂时不支持自动将参考文献展示在边栏中，但你可以手动引用#footnote[Tufte, E. R. (1973). The Relationship between Seats and Votes in Two-Party Systems. _American Political Science Review, 67_(2), 540～554. https://doi.org/10.2307/1958782]。
 
@@ -203,7 +202,7 @@
 
 #figure(caption: "这也是鸭鸭。")[
   #image("../../imgs/tufted-duck-female-with-duckling.webp", width: 250pt)
-]
+]<鸭鸭>
 
 #figure(caption: "这是只猴！")[
   #image("../../imgs/gorilla.webp", height: 250pt)
@@ -277,7 +276,7 @@ HTML 导出还不支持调整列宽、表格样式等，甚至目前连边框都
       if n <= 1: return n
       return fib(n-1) + fib(n-2)
   ```
-]
+]<code1>
 
 #figure(caption: "我最近在学习 Rust。")[
   ```rs
@@ -353,6 +352,9 @@ $ A = pi r^2 $
 包含分式、根号、求和与积分：
 $ integral_0^infinity e^(-x^2) d x = sqrt(pi) / 2 $
 $ sum_(k=0)^n k = 1 + ... + n = (n(n+1)) / 2 $
+$
+  P(A | B) = (P(B | A) P(A)) / P(B) = (P(B | A) P(A)) / (sum_(i=1)^n P(B | A_i) P(A_i))
+$
 
 ```typ
 $ integral_0^infinity e^(-x^2) d x = sqrt(pi) / 2 $
@@ -399,7 +401,35 @@ $
 
 == 11. 交叉引用
 
-TODO
+Typst 支持交叉引用功能。你可以为标题、图片、代码块等元素添加标签，然后在文档的其他位置引用它们。
+
+这里链接到 @ch1 部分。
+
+这里链接到 @code1 部分。
+
+这里链接到 @鸭鸭 部分。
+
+```typ
+这里链接到 @ch1 部分。
+
+这里链接到 @code1 部分。
+
+这里链接到 @鸭鸭 部分。
+```
+
+对应的标签写法如下：
+
+```typ
+== 1. 字体与文本修饰 <ch1>
+
+#figure(caption: "我会 Python。")[
+  ... code block ...
+]<code1>
+
+#figure(caption: "这也是鸭鸭。")[
+  ... image ...
+]<鸭鸭>
+```
 
 == 12. 编程特性
 
