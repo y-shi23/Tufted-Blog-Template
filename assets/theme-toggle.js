@@ -47,21 +47,16 @@
         updateToggleButton(theme);
     }
     
-    // 更新切换按钮的图标
+    // 更新切换按钮的状态
     function updateToggleButton(theme) {
         const button = document.getElementById('theme-toggle');
         if (!button) return;
         
-        const sunIcon = button.querySelector('.sun-icon');
-        const moonIcon = button.querySelector('.moon-icon');
-        
         if (theme === 'dark') {
-            if (sunIcon) sunIcon.style.display = 'block';
-            if (moonIcon) moonIcon.style.display = 'none';
+            button.classList.add('is-dark');
             button.setAttribute('aria-label', '切换到浅色模式');
         } else {
-            if (sunIcon) sunIcon.style.display = 'none';
-            if (moonIcon) moonIcon.style.display = 'block';
+            button.classList.remove('is-dark');
             button.setAttribute('aria-label', '切换到深色模式');
         }
     }
@@ -74,7 +69,7 @@
         applyTheme(newTheme);
     }
     
-    // 创建切换按钮
+    // 创建切换按钮 (DeepWiki 风格)
     function createToggleButton() {
         const button = document.createElement('button');
         button.id = 'theme-toggle';
@@ -82,22 +77,22 @@
         button.type = 'button';
         button.setAttribute('aria-label', '切换主题');
         
-        // 太阳图标 (用于深色模式下显示，点击切换到浅色)
+        // DeepWiki 风格: 两个图标并排，滑动指示器
         button.innerHTML = `
-            <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
+            <span class="toggle-track">
+                <span class="toggle-icon toggle-icon-sun">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                    </svg>
+                </span>
+                <span class="toggle-icon toggle-icon-moon">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </span>
+                <span class="toggle-thumb"></span>
+            </span>
         `;
         
         button.addEventListener('click', toggleTheme);

@@ -224,37 +224,99 @@ sup.footnote-ref {
 }
 
 /*******************************************************************************
-THEME TOGGLE BUTTON
+THEME TOGGLE BUTTON (DeepWiki Style)
 *******************************************************************************/
 
-/* 主题切换按钮样式 */
+/* 主题切换按钮样式 - DeepWiki 风格滑动开关 */
 .theme-toggle-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4em;
+  padding: 0;
   background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm, 0.2rem);
+  border: none;
   cursor: pointer;
-  color: inherit;
-  transition: background-color 120ms ease, border-color 120ms ease;
   margin-left: auto;
 }
 
-.theme-toggle-btn:hover,
 .theme-toggle-btn:focus-visible {
-  background: var(--highlight-weak, rgba(128, 128, 128, 0.2));
-  outline: none;
+  outline: 2px solid var(--highlight-strong, rgba(128, 128, 128, 0.4));
+  outline-offset: 2px;
+  border-radius: 20px;
 }
 
-.theme-toggle-btn svg {
-  display: block;
+/* 滑动轨道 */
+.toggle-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 52px;
+  height: 26px;
+  background: #e4e4e7;
+  border-radius: 13px;
+  padding: 0 4px;
+  transition: background-color 0.3s ease;
 }
 
-.theme-toggle-btn .sun-icon,
-.theme-toggle-btn .moon-icon {
-  transition: opacity 0.2s ease;
+/* 深色模式下的轨道背景 */
+.theme-toggle-btn.is-dark .toggle-track {
+  background: #3f3f46;
+}
+
+/* 图标容器 */
+.toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  z-index: 1;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.toggle-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* 太阳图标 - 左侧 */
+.toggle-icon-sun {
+  color: #f59e0b;
+  opacity: 1;
+}
+
+/* 月亮图标 - 右侧 */
+.toggle-icon-moon {
+  color: #6b7280;
+  opacity: 0.5;
+}
+
+/* 深色模式下的图标状态 */
+.theme-toggle-btn.is-dark .toggle-icon-sun {
+  color: #9ca3af;
+  opacity: 0.5;
+}
+
+.theme-toggle-btn.is-dark .toggle-icon-moon {
+  color: #fbbf24;
+  opacity: 1;
+}
+
+/* 滑动指示器（圆形滑块） */
+.toggle-thumb {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  left: 3px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 深色模式下滑块移动到右侧 */
+.theme-toggle-btn.is-dark .toggle-thumb {
+  transform: translateX(26px);
 }
 
 /*******************************************************************************
