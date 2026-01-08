@@ -16,7 +16,7 @@
   如果你之前从未接触过 Typst 和标记语言，建议先阅读 #link("https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki/Typst-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E8%B5%84%E6%96%99")[Wiki 页面] 及其中的资料，进行了解和学习后再来阅读本文档。
 ]
 
-== 1. 字体与文本修饰
+== 1. 字体与文本修饰 <ch1>
 
 这里展示了 *粗体*、_斜体_、#underline[下划线]、#strike[删除线]、#overline[上划线]、上标 E=mc#super[2]、下标 H#sub[2]O。重要内容可以使用 #highlight[高亮标记]。
 
@@ -36,16 +36,20 @@
 这是新的一行。
 ```
 
+目前 `#line()` 函数还不支持 HTML 导出，但可以使用 `#html.hr()` 添加分隔线。
+
+#html.hr()
+
 如果要显示特殊字符，需要转义：\* \_ \# \$ \@
 
 ```typ
 如果要显示特殊字符，需要转义：\* \_ \# \$ \@
 ```
 
-网站的视觉外观由 CSS 控制，你目前不能在 Typst 中直接改变文字的 #text(fill: blue)[颜色]、#text(size: 14pt)[大小] 或 #text(font: "Liu Jian Mao Cao")[字体] 等样式。
+网站的视觉外观由 CSS 控制，你目前不能在 Typst 中直接改变文字的 #text(fill: blue)[颜色]、#text(size: 14pt)[大小] 或 #text(font: "Liu Jian Mao Cao")[字体] 等样式。如需修改，请在 `assets/custom.css` 文件中添加自定义 CSS 样式。
 
 ```typ
-网站的视觉外观由 CSS 控制，你目前不能在 Typst 中直接改变文字的 #text(fill: blue)[颜色]、#text(size: 14pt)[大小] 或 #text(font: "Liu Jian Mao Cao")[字体] 等样式。
+你目前不能在 Typst 中直接改变文字的 #text(fill: blue)[颜色]、#text(size: 14pt)[大小] 或 #text(font: "Liu Jian Mao Cao")[字体] 等样式。
 ```
 
 
@@ -152,7 +156,6 @@
 ]
 ```
 
-// TODO:
 你可以将参考文献导出为 `.bib` 文件，使用 `bibliography()` 函数将其引用到 Typst中，然后就可以使用 `@` 引用它，就像这样@tufte1973relationship。\
 默认会将使用的参考文献显示在调用 `bibliography()` 函数的位置。模板暂时不支持自动将参考文献展示在边栏中，但你可以手动引用#footnote[Tufte, E. R. (1973). The Relationship between Seats and Votes in Two-Party Systems. _American Political Science Review, 67_(2), 540～554. https://doi.org/10.2307/1958782]。
 
@@ -203,7 +206,7 @@
 
 #figure(caption: "这也是鸭鸭。")[
   #image("../../imgs/tufted-duck-female-with-duckling.webp", width: 250pt)
-]
+]<鸭鸭>
 
 #figure(caption: "这是只猴！")[
   #image("../../imgs/gorilla.webp", height: 250pt)
@@ -220,9 +223,7 @@
 ```
 
 
-== 7. 表格
-
-HTML 导出还不支持调整列宽、表格样式等，甚至目前连边框都没有。现在推荐直接#link("sample-PDF.pdf")[添加 PDF] 或表格图片。
+== 7. 表格<tbl1>
 
 你可以使用 `table()` 函数创建简单的表格：
 
@@ -266,6 +267,8 @@ HTML 导出还不支持调整列宽、表格样式等，甚至目前连边框都
 ]
 ```
 
+目前还不支持复杂的自定义表格设计。当然，你也可以直接 #link("sample-PDF.pdf")[添加 PDF] 或表格图片。
+
 == 8. 代码块
 
 使用 ```` ``` ```` 包裹代码来添加代码块，支持语法高亮，也可以和图片、表格一样使用 `figure()` 添加标题。我修改了代码块样式，并添加了行号和复制按钮。
@@ -277,7 +280,7 @@ HTML 导出还不支持调整列宽、表格样式等，甚至目前连边框都
       if n <= 1: return n
       return fib(n-1) + fib(n-2)
   ```
-]
+]<code1>
 
 #figure(caption: "我最近在学习 Rust。")[
   ```rs
@@ -344,6 +347,17 @@ Typst 使用 `$ $`包裹公式。行内公式嵌入在文字中，写法是 `$ $
 $f(x) = x^2$
 ```
 
+$ "块级公式1" A = pi^2 $
+#figure(caption: "块级公式2")[
+  $ E = m c^2 $
+]
+
+#figure(caption: "行内公式")[
+  这是一个包含行内公式 $E = m c^2$ 的段落。
+]
+
+在数学和物理学中，求和和积分是两个最基础的概念。例如，我们常常需要计算一系列数字的平方和，其公式为 $sum_(i=1)^n i^2 = (n(n+1)(2n+1))/6$。这个优雅的结果告诉我们，前 $n$ 个正整数的平方和可以用一个三次多项式 $n(n+1)(2n+1)/6$ 来精确表达。类似地，如果我们想要计算立方和，公式变为 $sum_(i=1)^n i^3 = [(n(n+1))/2]^2$，这更加令人惊讶，因为立方和竟然等于平方和公式的平方！
+
 而块级公式独占一行，写法是 `$ $` 与公式内容之间存在空格，例如 $ A = pi r^2 $
 
 ```typ
@@ -353,6 +367,9 @@ $ A = pi r^2 $
 包含分式、根号、求和与积分：
 $ integral_0^infinity e^(-x^2) d x = sqrt(pi) / 2 $
 $ sum_(k=0)^n k = 1 + ... + n = (n(n+1)) / 2 $
+$
+  P(A | B) = (P(B | A) P(A)) / P(B) = (P(B | A) P(A)) / (sum_(i=1)^n P(B | A_i) P(A_i))
+$
 
 ```typ
 $ integral_0^infinity e^(-x^2) d x = sqrt(pi) / 2 $
@@ -399,7 +416,37 @@ $
 
 == 11. 交叉引用
 
-TODO
+Typst 支持交叉引用功能。你可以为标题、图片、代码块等元素添加标签，然后在文档的其他位置引用它们。
+
+这里链接到 @ch1 部分。\
+这里链接到 @code1 部分。\
+这里链接到 @鸭鸭 部分。\
+这里链接到 @tbl1 部分。
+
+```typ
+这里链接到 @ch1 部分。\
+这里链接到 @code1 部分。\
+这里链接到 @鸭鸭 部分。\
+这里链接到 @tbl1 部分。
+```
+
+对应的标签写法如下：
+
+```typ
+== 1. 字体与文本修饰 <ch1>
+
+#figure(caption: "我会 Python。")[
+  ... code block ...
+]<code1>
+
+#figure(caption: "这也是鸭鸭。")[
+  ... image ...
+]<鸭鸭>
+
+#figure(caption: [`table()` 函数生成的表格])[
+  ... table ...
+]<tbl1>
+```
 
 == 12. 编程特性
 
@@ -460,12 +507,16 @@ Typst 不但是一个标记排版语言，还是一门编程排版语言：
 #cmarker.render(md-content, math: mitex, scope: scope)
 ```
 
-将 `"tufted-titmouse.md"` 渲染为以下内容：
+会将 `"tufted-titmouse.md"` 渲染为以下内容：
+
+#html.hr()
 
 #let scope = (
   image: (source, alt: none, format: auto) => figure(image(source, alt: alt, format: format)),
 )
 #let md-content = read("tufted-titmouse.md")
 #cmarker.render(md-content, math: mitex, scope: scope)
+
+#html.hr()
 
 `"tufted-titmouse.md"` 渲染完毕。

@@ -23,6 +23,13 @@
     "/assets/tufted.css",
     "/assets/custom.css",
   ),
+  icon: "/assets/favicon.ico",
+  js-scripts: (
+    "/assets/code-blocks.js",
+    "/assets/format-headings.js",
+  ),
+  header-elements: (),
+  footer-elements: (),
   content,
 ) = {
   // Apply styling
@@ -41,22 +48,50 @@
         html.meta(charset: "utf-8")
         html.meta(name: "viewport", content: "width=device-width, initial-scale=1")
         html.title(title)
+        html.link(rel: "icon", href: icon)
 
         // Stylesheets
         for (css-link) in css {
           html.link(rel: "stylesheet", href: css-link)
         }
+
+        for (js-src) in js-scripts {
+          html.script(src: js-src)
+        }
       })
 
       // Body
       html.body({
-        // Add website header
+        // Custom header elements (site header, not navigation)
+        html.header(
+          class: "site-header",
+          {
+            for (i, element) in header-elements.enumerate() {
+              element
+              if i < header-elements.len() - 1 {
+                html.br()
+              }
+            }
+          },
+        )
+
+        // Add website navigation
         make-header(header-links)
 
         // Main content
         html.article(
           html.section(content),
         )
+
+        // Custom footer elements
+        html.footer({
+          for (i, element) in footer-elements.enumerate() {
+            element
+            if i < footer-elements.len() - 1 {
+              html.br()
+            }
+          }
+        })
       })
     },
   )

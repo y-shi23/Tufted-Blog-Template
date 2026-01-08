@@ -1,10 +1,20 @@
 # Tufted Blog Template
 
-English | [中文](README.md)
+<div align="center">
+
+[![GitHub stars](https://img.shields.io/github/stars/Yousa-Mirage/Tufted-Blog-Template?style=social)](https://github.com/Yousa-Mirage/Tufted-Blog-Template/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Yousa-Mirage/Tufted-Blog-Template)
+[![Typst](https://img.shields.io/badge/typst-239DAD.svg?&logo=typst&logoColor=white)](https://typst.app/)
+
+[简体中文](README.md) | [English](README_en.md)
+
+</div>
 
 This is a static website building template based on [Typst](https://typst.app/) and [Tufted](https://github.com/vsheg/tufted), providing step-by-step guidance to build a clean and beautiful personal website, blog, and resume.
 
 If you want to quickly experience the website style, you can visit [Demo Website](https://tufted-blog.pages.dev/).
+Update log available at [Changelog](https://tufted-blog.pages.dev/Changelog/) .
 
 ![Tufted website](content/imgs/devices.webp)
 
@@ -142,6 +152,8 @@ This command will compile the `.typ` files in `content/` to HTML files and outpu
 ### 3. Local Preview
 
 > The HTTP server will occupy the current terminal window, so it's recommended to open a new terminal window in that path to run the preview command.
+>
+> 💡 **Quick workflow tip**: You can run `uv run build.py preview` in one terminal and then run `uv run build.py build` in another terminal to compile your changes. The web page will automatically refresh, allowing for real-time preview without the need to repeatedly run the `preview` command to restart the server.
 
 You can run the following command to start a local preview server:
 
@@ -184,18 +196,30 @@ After understanding the web page structure and how to write, you can replace the
 
 ```plaintext
 Tufted-Blog-Template/
-├── .github/workflows     # GitHub Actions for automated build and deployment
-├── _site/                # Build output directory (auto-generated)
-├── assets/               # Static resources (CSS, JS, fonts, icons, etc.)
-├── content/              # Website content source files (.typ)
-│   ├── index.typ             # Website homepage
-│   ├── Blog/                 # Blog pages
-│   ├── CV/                   # Resume pages
-│   ├── Docs/                 # Documentation pages
-│   └── .../                  # Add or modify other pages as needed
-├── build.py              # Python build script
-├── config.typ            # Website global configuration
-└── Makefile              # Make build commands
+├── .github/workflows      # GitHub Actions for automated build and deployment
+├── _site/                 # Build output directory (auto-generated)
+├── assets/                # Static resources (CSS, JS, fonts, icons, etc.)
+│   ├── tufted.css             # Main stylesheet
+│   ├── custom.css             # Custom stylesheet (user-editable)
+│   ├── copy-code.js           # Code block copy functionality
+│   ├── line-numbers.js        # Code line number display
+│   └── format-headings.js     # Heading formatting
+├── content/               # Website content source files (.typ)
+│   ├── index.typ              # Website homepage
+│   ├── Blog/                  # Blog pages
+│   ├── CV/                    # Resume pages
+│   ├── Docs/                  # Documentation pages
+│   └── .../                   # Add or modify other pages as needed
+├── tufted-lib/            # Typst style library and feature modules
+│   ├── tufted.typ             # Main template and configuration
+│   ├── layout.typ             # Page layout definitions
+│   ├── math.typ               # Mathematics formula handling
+│   ├── figures.typ            # Image and chart handling
+│   ├── refs.typ               # Reference and bibliography handling
+│   └── notes.typ              # Footnotes and margin notes handling
+├── build.py               # Python build script
+├── config.typ             # Website global configuration
+└── Makefile               # Make build commands
 ```
 
 ## 🔗 Notes

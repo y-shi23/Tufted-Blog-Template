@@ -1,10 +1,20 @@
 # Tufted Blog Template
 
-[English](README_en.md) | 中文
+<div align="center">
+
+[![GitHub stars](https://img.shields.io/github/stars/Yousa-Mirage/Tufted-Blog-Template?style=social)](https://github.com/Yousa-Mirage/Tufted-Blog-Template/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Yousa-Mirage/Tufted-Blog-Template)
+[![Typst](https://img.shields.io/badge/typst-239DAD.svg?&logo=typst&logoColor=white)](https://typst.app/)
+
+[简体中文](README.md) | [English](README_en.md)
+
+</div>
 
 这是一个基于 [Typst](https://typst.app/) 和 [Tufted](https://github.com/vsheg/tufted) 的静态网站构建模板，手把手教你搭建简洁、美观的个人网站、博客和简历设计。
 
 如果你想快速体验网站样式效果，可以访问 [示例网站](https://tufted-blog.pages.dev/) 。
+更新记录可见 [Changelog](https://tufted-blog.pages.dev/Changelog/) 。
 
 ![Tufted website](content/imgs/devices.webp)
 
@@ -142,6 +152,8 @@ make build  # 只适用于 macOS/Linux
 ### 3. 本地预览
 
 > HTTP 服务器会占用当前终端窗口，因此推荐在该路径下打开一个新的终端窗口运行预览命令。
+>
+> 💡 **快速工作流提示**：你可以在一个终端后台运行 `uv run build.py preview`，然后在另一个终端运行 `uv run build.py build` 来编译修改。网页会自动刷新，从而实现实时预览而不需要反复运行 `preview` 命令重启服务器。
 
 你可以运行以下命令启动本地预览服务器：
 
@@ -184,18 +196,30 @@ uv run build.py preview -p 12345
 
 ```plaintext
 Tufted-Blog-Template/
-├── .github/workflows     # GitHub Actions 自动构建、部署
-├── _site/                # 构建输出目录 (自动生成)
-├── assets/               # 静态资源 (CSS, JS, 字体, 图标等)
-├── content/              # 网站内容源文件 (.typ)
-│   ├── index.typ             # 网站首页
-│   ├── Blog/                 # 博客页
-│   ├── CV/                   # 简历页
-|   ├── Docs/                 # 编写文档页
-│   └── .../                  # 可自行修改或添加其他页面
-├── build.py              # Python 构建脚本
-├── config.typ            # 网站全局配置
-└── Makefile              # Make 构建命令
+├── .github/workflows      # GitHub Actions 自动构建、部署
+├── _site/                 # 构建输出目录 (自动生成)
+├── assets/                # 静态资源 (CSS、JS、字体、图标等)
+│   ├── tufted.css             # 主样式表
+│   ├── custom.css             # 自定义样式表（用户可编辑）
+│   ├── copy-code.js           # 代码块复制功能
+│   ├── line-numbers.js        # 代码行号显示
+│   └── format-headings.js     # 标题格式化
+├── content/               # 网站内容源文件 (.typ)
+│   ├── index.typ               # 网站首页
+│   ├── Blog/                   # 博客页
+│   ├── CV/                     # 简历页
+│   ├── Docs/                   # 编写文档页
+│   └── .../                    # 可自行修改或添加其他页面
+├── tufted-lib/            # Typst 样式库和功能模块
+│   ├── tufted.typ             # 主模板和配置
+│   ├── layout.typ             # 页面布局定义
+│   ├── math.typ               # 数学公式处理
+│   ├── figures.typ            # 图片和图表处理
+│   ├── refs.typ               # 参考文献处理
+│   └── notes.typ              # 脚注和侧边注处理
+├── build.py               # Python 构建脚本
+├── config.typ             # 网站全局配置
+└── Makefile               # Make 构建命令
 ```
 
 ## 🔗 说明
