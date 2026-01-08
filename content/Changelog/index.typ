@@ -12,6 +12,8 @@
 - 合并 `assets/copy-code.js` 和 `assets/line-numbers.js` 为单个脚本 `assets/code-blocks.js`
 - 彻底优化了深色模式显示效果
 - 添加了美观的浅色/深色模式切换按钮
+- 优化了公式块，为超长公式块添加了横向滚动条
+- 优化了代码块的横向滚动条
 
 == 2026-01-07
 
