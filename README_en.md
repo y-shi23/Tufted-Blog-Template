@@ -187,18 +187,30 @@ After understanding the web page structure and how to write, you can replace the
 
 ```plaintext
 Tufted-Blog-Template/
-├── .github/workflows     # GitHub Actions for automated build and deployment
-├── _site/                # Build output directory (auto-generated)
-├── assets/               # Static resources (CSS, JS, fonts, icons, etc.)
-├── content/              # Website content source files (.typ)
-│   ├── index.typ             # Website homepage
-│   ├── Blog/                 # Blog pages
-│   ├── CV/                   # Resume pages
-│   ├── Docs/                 # Documentation pages
-│   └── .../                  # Add or modify other pages as needed
-├── build.py              # Python build script
-├── config.typ            # Website global configuration
-└── Makefile              # Make build commands
+├── .github/workflows      # GitHub Actions for automated build and deployment
+├── _site/                 # Build output directory (auto-generated)
+├── assets/                # Static resources (CSS, JS, fonts, icons, etc.)
+│   ├── tufted.css             # Main stylesheet
+│   ├── custom.css             # Custom stylesheet (user-editable)
+│   ├── copy-code.js           # Code block copy functionality
+│   ├── line-numbers.js        # Code line number display
+│   └── format-headings.js     # Heading formatting
+├── content/               # Website content source files (.typ)
+│   ├── index.typ              # Website homepage
+│   ├── Blog/                  # Blog pages
+│   ├── CV/                    # Resume pages
+│   ├── Docs/                  # Documentation pages
+│   └── .../                   # Add or modify other pages as needed
+├── tufted-lib/            # Typst style library and feature modules
+│   ├── tufted.typ             # Main template and configuration
+│   ├── layout.typ             # Page layout definitions
+│   ├── math.typ               # Mathematics formula handling
+│   ├── figures.typ            # Image and chart handling
+│   ├── refs.typ               # Reference and bibliography handling
+│   └── notes.typ              # Footnotes and margin notes handling
+├── build.py               # Python build script
+├── config.typ             # Website global configuration
+└── Makefile               # Make build commands
 ```
 
 ## 🔗 Notes

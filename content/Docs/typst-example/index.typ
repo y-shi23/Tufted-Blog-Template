@@ -219,7 +219,7 @@
 ```
 
 
-== 7. 表格
+== 7. 表格<tbl1>
 
 你可以使用 `table()` 函数创建简单的表格：
 
@@ -230,7 +230,7 @@
     [Alice], [前端开发者，喜欢 Rust], [在线],
     [Bob], [后端工程师，喜欢 Python], [离线],
   )
-]<tbl1>
+]
 
 ```typ
 #figure(caption: [`table()` 函数生成的表格])[
@@ -503,7 +503,7 @@ Typst 不但是一个标记排版语言，还是一门编程排版语言：
 #cmarker.render(md-content, math: mitex, scope: scope)
 ```
 
-将 `"tufted-titmouse.md"` 渲染为以下内容：
+会将 `"tufted-titmouse.md"` 渲染为以下内容：
 
 #let scope = (
   image: (source, alt: none, format: auto) => figure(image(source, alt: alt, format: format)),
