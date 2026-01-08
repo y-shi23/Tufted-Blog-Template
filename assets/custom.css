@@ -1,5 +1,23 @@
 html {
   font-size: 10.5pt;
+  height: 100%;
+}
+
+/* 使footer始终位于页面底部 */
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 让主内容区域自动填充剩余空间 */
+body>article {
+  flex: 1 0 auto;
+}
+
+/* footer保持在底部 */
+body>footer {
+  flex-shrink: 0;
 }
 
 /* 设置段落两端对齐 */
