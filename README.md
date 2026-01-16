@@ -20,7 +20,7 @@
 
 > 如果你是纯萌新，很可能会遇到一些新概念，可能会第一次使用终端和命令行，别害怕，本项目不需要你有任何前置知识，十分友好。  
 > 遇到不懂的概念或不会的操作，多看文档、多问 AI、多搜索。  
-> 如果遇到任何问题，你可以：查看 [Wiki 文档](https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki)、在 [Discussions](https://github.com/Yousa-Mirage/Tufted-Blog-Template/discussions) 中提问和讨论、在 [Issue](https://github.com/Yousa-Mirage/Tufted-Blog-Template/issues) 中提交反馈。
+> 如果遇到任何问题，你可以：查看 [Wiki 文档](https://github.com/Yousa-Mirage/Tufted-Blog-Template/wiki)、询问 [DeepWiki](https://deepwiki.com/Yousa-Mirage/Tufted-Blog-Template)、在 [Discussions](https://github.com/Yousa-Mirage/Tufted-Blog-Template/discussions) 中提问和讨论、在 [Issue](https://github.com/Yousa-Mirage/Tufted-Blog-Template/issues) 中提交反馈。
 
 ## ✨ 特点
 
