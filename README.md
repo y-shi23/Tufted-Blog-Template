@@ -221,6 +221,7 @@ Tufted-Blog-Template/
 本模板基于 [Vsevolod Shegolev](http://vsheg.com/) 开发的 Typst 包 [Tufted](https://github.com/vsheg/tufted)，并进行了一些样式和功能修改以更好的支持中文内容，主要包括：
 
 - 修改部分文本样式以适应中文排版习惯
+- 微调了大量样式细节，增强了深色模式，优化了各种元素的显示效果
 - 优化代码块样式，增加行号和复制功能
 - 增加 Python 构建脚本，从而支持跨平台构建
 - 增加 PDF 构建支持，允许编译 PDF 文档并链接到网页
