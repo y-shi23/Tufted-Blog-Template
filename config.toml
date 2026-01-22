@@ -1,0 +1,39 @@
+[site]
+title = "Tufted Blog Template"
+lang = "zh"
+description = "A blog template based on Tufte CSS"
+icon = "/assets/favicon.ico"
+
+[navigation]
+links = [
+    { href = "/", title = "Home" },
+    { href = "/Docs/", title = "Docs" },
+    { href = "/Blog/", title = "Blog" },
+    { href = "/CV/", title = "CV" },
+    { href = "/Changelog/", title = "Changelog" }
+]
+
+[header]
+elements = [
+    "你好",
+    "Ciallo～(∠・ω< )⌒☆"
+]
+
+[footer]
+elements = [
+    "© 2026 Yousa-Mirage",
+    "Powered by <a href='https://github.com/Yousa-Mirage/Tufted-Blog-Template'>Tufted-Blog-Template</a>"
+]
+
+[assets]
+css = [
+    "https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css",
+    "/assets/tufted.css",
+    "/assets/theme.css",
+    "/assets/custom.css"
+]
+js = [
+    "/assets/code-blocks.js",
+    "/assets/format-headings.js",
+    "/assets/theme-toggle.js"
+]

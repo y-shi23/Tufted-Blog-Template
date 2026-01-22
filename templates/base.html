@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ config.site.lang }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }} | {{ config.site.title }}</title>
+    <link rel="icon" href="{{ config.site.icon }}">
+
+    <!-- Stylesheets -->
+    {% for css in config.assets.css %}
+    <link rel="stylesheet" href="{{ css }}">
+    {% endfor %}
+
+    <!-- Scripts -->
+    {% for js in config.assets.js %}
+    <script src="{{ js }}"></script>
+    {% endfor %}
+</head>
+<body>
+    <!-- Site Header (Custom Elements) -->
+    <header class="site-header">
+        {% for element in config.header.elements %}
+        {{ element | safe }}
+        {% if not loop.last %}<br>{% endif %}
+        {% endfor %}
+    </header>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            {% for link in config.navigation.links %}
+            <a href="{{ link.href }}">{{ link.title }}</a>
+            {% endfor %}
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <article>
+        <section>
+            {{ content | safe }}
+        </section>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        {% for element in config.footer.elements %}
+        {{ element | safe }}
+        {% if not loop.last %}<br>{% endif %}
+        {% endfor %}
+    </footer>
+</body>
+</html>
