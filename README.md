@@ -139,9 +139,9 @@ python build.py preview
 <details>
 <summary>预览命令说明</summary>
 
-`preview` 会首先尝试运行 `uvx livereload _site`，这个命令使用 uv 运行了一个叫做 livereload 的工具，livereload 将 `_site/` 目录作为网站根目录，并在本地的 8000 端口启动 HTTP 实时服务器。如果你没有安装 uv，则会回退到使用 Python 内置的 HTTP 服务器：`python -m http.server 8000 --directory _site`。
+`preview` 会首先尝试运行 `uvx livereload _site`，这个命令使用 uv 运行了一个叫做 livereload 的工具，livereload 将 `_site/` 目录作为网站根目录，并在本地的 8080 端口启动 HTTP 实时服务器。如果你没有安装 uv，则会回退到使用 Python 内置的 HTTP 服务器：`python -m http.server 8080 --directory _site`。
 
-预览服务器默认使用 `8000` 端口，你可以使用 `-p/--port` 参数指定其他端口，例如：
+预览服务器默认使用 `8080` 端口，你可以使用 `-p/--port` 参数指定其他端口，例如：
 
 ```bash
 uv run build.py preview -p 12345
@@ -149,7 +149,7 @@ uv run build.py preview -p 12345
 
 </details>
 
-浏览器应该会自动打开，或者你可以手动打开浏览器，访问 `http://localhost:8000` 来查看默认网页。我在默认网页（即`content/` 中的内容）中编写了更多文档说明和示例内容，你可以自行探索和修改。
+浏览器应该会自动打开，或者你可以手动打开浏览器，访问 `http://localhost:8080` 来查看默认网页。我在默认网页（即`content/` 中的内容）中编写了更多文档说明和示例内容，你可以自行探索和修改。
 
 你看到的本地网站内容应该与 [示例网站](https://little-yousa-mirage.github.io/) 完全相同。
 

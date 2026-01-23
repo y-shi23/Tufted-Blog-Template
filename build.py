@@ -15,7 +15,7 @@ Tufted Blog Template 构建脚本
     uv run build.py build       # 完整构建 (HTML + 资源)
     uv run build.py assets      # 仅复制静态资源
     uv run build.py clean       # 清理生成的文件
-    uv run build.py preview     # 启动本地预览服务器（默认端口 8000）
+    uv run build.py preview     # 启动本地预览服务器（默认端口 8080）
     uv run build.py preview -p 3000  # 使用自定义端口
     uv run build.py --help      # 显示帮助信息
 
@@ -23,7 +23,7 @@ Tufted Blog Template 构建脚本
     --force, -f                 # 强制完整重建，忽略增量检查
 
 预览服务器选项:
-    --port, -p PORT             # 指定服务器端口号（默认: 8000）
+    --port, -p PORT             # 指定服务器端口号（默认: 8080）
 """
 
 import argparse
@@ -212,7 +212,7 @@ def clean() -> bool:
         print(f"✅ 已清理 {SITE_DIR}/ 目录。")
     return True
 
-def preview(port: int = 8000, open_browser_flag: bool = True) -> bool:
+def preview(port: int = 8080, open_browser_flag: bool = True) -> bool:
     """启动本地预览服务器"""
     if not SITE_DIR.exists():
         print(f"⚠️ 输出目录 {SITE_DIR} 不存在，请先运行 build 命令。")
@@ -284,7 +284,7 @@ if __name__ == "__main__":
     clean_parser = subparsers.add_parser("clean", help="清理")
     
     preview_parser = subparsers.add_parser("preview", help="预览")
-    preview_parser.add_argument("-p", "--port", type=int, default=8000)
+    preview_parser.add_argument("-p", "--port", type=int, default=8080)
     preview_parser.add_argument("--no-open", action="store_false", dest="open_browser")
     preview_parser.set_defaults(open_browser=True)
 
@@ -300,7 +300,7 @@ if __name__ == "__main__":
         "build": lambda: build(getattr(args, "force", False)),
         "assets": copy_assets,
         "clean": clean,
-        "preview": lambda: preview(getattr(args, "port", 8000), getattr(args, "open_browser", True))
+        "preview": lambda: preview(getattr(args, "port", 8080), getattr(args, "open_browser", True))
     }
     
     commands[args.command]()

@@ -451,7 +451,7 @@ header nav a:focus-visible {
 
 
 /*******************************************************************************
-FOOTNOTES AND MARGIN NOTES
+FOOTNOTES AND MARGIN NOTES (Tufte-style Sidenotes)
 *******************************************************************************/
 
 /* Fix footnote line-height inconsistency */
@@ -463,7 +463,7 @@ sup.footnote-ref {
 }
 
 .footnote-ref,
-.footnote-ref+.marginnote {
+.footnote-ref+.sidenote {
     --highlight: transparent;
     background-color: var(--highlight);
     box-shadow: 0 0 0 5px var(--highlight);
@@ -471,14 +471,14 @@ sup.footnote-ref {
     transition: background-color 0.3s ease 1s, box-shadow 0.3s ease 1s;
 }
 
-/* Highlight margin note when footnote reference is hovered */
-.footnote-ref:hover+.marginnote {
+/* Highlight sidenote when footnote reference is hovered */
+.footnote-ref:hover+.sidenote {
     --highlight: var(--highlight-weak);
     transition-delay: 0s;
 }
 
-/* Highlight footnote reference when margin note is hovered */
-.footnote-ref:has(+ .marginnote:hover) {
+/* Highlight footnote reference when sidenote is hovered */
+.footnote-ref:has(+ .sidenote:hover) {
     --highlight: var(--highlight-strong);
     transition-delay: 0s;
 }
@@ -486,6 +486,82 @@ sup.footnote-ref {
 a.footnote-ref-link {
     background-image: none;
     text-shadow: none !important;
+}
+
+/* Sidenote Styles - Tufte-style margin notes */
+.sidenote,
+.margin-note {
+    float: right;
+    clear: right;
+    margin-right: -60%;
+    width: 50%;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    vertical-align: baseline;
+    position: relative;
+    color: #666;
+}
+
+/* Sidenote number styling */
+.sidenote-number {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #111;
+    margin-right: 0.4em;
+    vertical-align: super;
+}
+
+/* Remove paragraph margins inside sidenotes */
+.sidenote p,
+.margin-note p {
+    margin: 0.3rem 0;
+    text-align: left;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+/* Images in sidenotes */
+.sidenote img,
+.margin-note img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.5rem 0;
+}
+
+/* Highlighted state for mobile tap */
+.sidenote.highlighted {
+    background-color: var(--highlight-weak);
+    box-shadow: 0 0 0 8px var(--highlight-weak);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hide original footnotes section */
+.footnote {
+    display: none;
+}
+
+/* Responsive: Stack sidenotes on mobile */
+@media (max-width: 760px) {
+    .sidenote,
+    .margin-note {
+        float: none;
+        display: block;
+        position: relative;
+        width: 100%;
+        margin: 1rem 0;
+        margin-right: 0;
+        padding: 0.8rem 1rem;
+        background-color: var(--highlight-weak, rgba(128, 128, 128, 0.1));
+        border-left: 3px solid #888;
+        border-radius: var(--radius-sm);
+    }
+    
+    .sidenote-number {
+        display: inline;
+    }
 }
 
 
